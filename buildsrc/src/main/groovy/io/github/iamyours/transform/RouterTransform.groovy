@@ -50,7 +50,7 @@ public class RouterTransform extends Transform {
     }
 
     def routeMap = [:]
-    static final ROUTE_NAME = ":router-api"
+    static final ROUTE_NAME = "io.github.iamyours:router-api:"
 
     @Override
     void transform(TransformInvocation transformInvocation) throws TransformException, InterruptedException, IOException {
@@ -201,7 +201,6 @@ public class RouterTransform extends Transform {
         ClassReader reader = new ClassReader(is)
         ClassNode node = new ClassNode()
         reader.accept(node, 1)
-        println("className:" + node.name)
         def list = node.invisibleAnnotations
         for (AnnotationNode an : list) {
             if (ANNOTATION_DESC == an.desc) {

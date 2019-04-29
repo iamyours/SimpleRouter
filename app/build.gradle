@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
-apply plugin: io.github.iamyours.RouterPlugin
+apply plugin: 'RouterPlugin'
 
 android {
     compileSdkVersion 28
