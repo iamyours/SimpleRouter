@@ -1,0 +1,123 @@
+//apply plugin: 'com.jfrog.bintray'
+//apply plugin: 'maven-publish'
+//apply plugin: 'java'
+//apply plugin: 'signing'
+//apply plugin: 'maven'
+//
+//group = "io.github.iamyours"
+//version = "1.0.1"
+//project.archivesBaseName = "router-api"
+//
+//task javadocJar(type: Jar, dependsOn: javadoc) {
+//    classifier = 'javadoc'
+//    from javadoc.destinationDir
+//}
+//
+//task sourceJar(type: Jar) {
+//    classifier = 'sources'
+//    from sourceSets.main.allSource
+//}
+//
+//ext {
+//    pomFilePath = "${project.buildDir.absolutePath}/tmp/pom.xml"
+//    pomFile = file(pomFilePath)
+//}
+//
+//configurations {
+//    pom
+//}
+//
+//artifacts {
+//    archives jar
+//    archives sourceJar
+//    archives javadocJar
+//    if (pomFile.exists()) {
+//        pom pomFile
+//    }
+//}
+//
+//task signJars(type: Sign, dependsOn: [jar, javadocJar, sourceJar]) {
+//    sign configurations.archives
+//}
+//
+//task signPom(type: Sign) {
+//    sign configurations.pom
+//}
+//
+//if (project.ext.pomFile.exists()) {
+//    task preparePublication(dependsOn: [signJars, signPom])
+//} else {
+//    task preparePublication(dependsOn: signJars)
+//}
+//
+//def getSignatureFiles = {
+//    def allFiles = project.tasks.signJars.signatureFiles.collect{it}
+//    def signedSources = allFiles.find{ it.name.contains('-sources') }
+//    def signedJavadoc = allFiles.find{ it.name.contains('-javadoc') }
+//    def signedJar = (allFiles - [signedSources, signJars])[0]
+//    return [
+//            [archive: signedSources, classifier: 'sources', extension: 'jar.asc'],
+//            [archive: signedJavadoc, classifier: 'javadoc', extension: 'jar.asc'],
+//            [archive: signedJar, classifier: 'null', extension: 'jar.asc']
+//    ]
+//}
+//
+//def getPomSignature = {
+//    return project.tasks.signPom.signatureFiles.collect{ it }[0]
+//}
+//
+//def siteUrl = 'https://github.com/iamyours/SimpleRouter'
+//def gitUrl = 'https://github.com/iamyours/SimpleRouter.git'
+//def issueUrl = 'https://github.com/iamyours/SimpleRouter/issues'
+//
+//install {
+//    repositories.mavenInstaller {
+//// generates POM.xml with proper parameters
+//        pom {
+//            project {
+//                packaging 'jar'
+//                name 'The Android Plugin for Router'
+//                url siteUrl
+//
+//                licenses {
+//                    license {
+//                        name 'The Apache Software License, Version 2.0'
+//                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+//                    }
+//                }
+//                developers {
+//                    developer {
+//                        id 'RogerYan'		//填写的一些基本信息
+//                        name 'Roger'
+//                        email 'yan127422@163.com'
+//                    }
+//                }
+//
+//                scm {
+//                    connection gitUrl
+//                    developerConnection gitUrl
+//                    url siteUrl
+//                }
+//            }
+//        }
+//    }
+//}
+//
+//
+//bintray {
+//    user = "iamyours"
+//    key = "xxx"
+//    configurations = ['archives']
+//    pkg {
+//        repo = "maven" //bintray 上面 Package名字
+//        name = "router-api" //bintray 上面项目名
+//        desc = 'Router api for android'
+//        websiteUrl = siteUrl
+//        vcsUrl = gitUrl
+//        issueTrackerUrl = issueUrl
+//        licenses = ["Apache-2.0"]
+//        labels = 'java'
+//        publicDownloadNumbers = true
+//        publish = true
+//    }
+//}
