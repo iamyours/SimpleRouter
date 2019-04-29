@@ -53,7 +53,7 @@ ARouter.getInstance()
             }
         });
 ```
-# If Proguard is turn on
+### If Proguard is turn on
 add rules in proguard-rules.pro
 ```
 -keep public class io.github.iamyours.router.**{*;}
