@@ -21,7 +21,7 @@ apply plugin in app module
 ``` gradle
 apply plugin: 'RouterPlugin'
 ```
-add dependency in the module that will use @Route annotation,you and add it in common module.
+add dependency in the module that will use @Route annotation,you can add it in common module.
 ``` gradle
 api 'io.github.iamyours:router-api:1.0.1'
 ```
