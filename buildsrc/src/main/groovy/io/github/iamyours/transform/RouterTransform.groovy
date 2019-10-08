@@ -132,9 +132,7 @@ public class RouterTransform extends Transform {
         }
         jos.close()
         file.close()
-        if (jarFile.exists()) jarFile.delete()
-        tmp.renameTo(jarFile)
-        FileUtils.copyFile(jarFile, dest)
+        FileUtils.copyFile(tmp, dest)
     }
 
     private static final String ROUTE_MAP_CLASS_NAME = "io.github.iamyours.router.RouteMap"
