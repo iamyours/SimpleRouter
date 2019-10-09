@@ -221,7 +221,8 @@ public class RouterTransform extends Transform {
     //获取类名
     String getClassName(String root, String classPath) {
         return classPath.substring(root.length() + 1, classPath.length() - 6)
-                .replaceAll("/", ".")
+                .replaceAll("/", ".")       // unix/linux
+                .replaceAll("\\\\", ".")    //windows
     }
 
     boolean isSystemClass(String fileName) {
